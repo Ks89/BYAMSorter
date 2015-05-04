@@ -1,2 +1,2 @@
 # BYAMSorter
-Python script for BYAManager
+Python script for [BYAManager](https://github.com/Ks89/BYAManager)
