@@ -14,23 +14,50 @@
 
 __author__ = 'Stefano Cappa'
 
-f = open('ipswlista.txt', 'r')
+ipswList = []
 
-text = f.readLine()
+iphoneList = []
+ipadList = []
+ipodList = []
+appletvList = []
+otherList = []
 
-x=4
-while x > 0:
-    print('spam!' * x)
-    x -= 1
+# read file and put lines in a list
+with open('ipswlista.txt', 'r') as f:
+    for line in f:
+        ipswFile = ''
+        resplittedElem = line.split('___')[0].split('/')
+        if '.ipsw' in resplittedElem[5]:
+            ipswFile = resplittedElem[5]
+        elif '.ipsw' in resplittedElem[6]:
+            ipswFile = resplittedElem[6]
+        elif '.ipsw' in resplittedElem[8]:
+            ipswFile = resplittedElem[8]
+        elif '.ipsw' in resplittedElem[9]:
+            ipswFile = resplittedElem[9]
+
+        if 'iPad' in ipswFile:
+            ipadList.append(line)
+        elif 'iPod' in ipswFile:
+            ipodList.append(line)
+        elif 'AppleTV' in ipswFile:
+            appletvList.append(line)
+        elif 'iPhone' in ipswFile:
+            iphoneList.append(line)
+        else:
+            otherList.append(line)
 
 
-print(text)
+ipadList.sort(reverse=False)
+ipodList.sort(reverse=False)
+appletvList.sort(reverse=False)
+iphoneList.sort(reverse=False)
+otherList.sort(reverse=False)
 
-print(text.split())
 
-#
-# f.write('Hello\n')
-# f.write('world\n')
-# f.close()
-#
-# f = open('data.txt')
+with open('newFile.txt', mode='wt', encoding='utf-8') as myfile:
+    myfile.write(''.join(iphoneList))
+    myfile.write(''.join(ipadList))
+    myfile.write(''.join(ipodList))
+    myfile.write(''.join(appletvList))
+    myfile.write(''.join(otherList))
