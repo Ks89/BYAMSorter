@@ -22,6 +22,7 @@ ipodList = []
 appletvList = []
 otherList = []
 
+
 # read file and put lines in a list
 with open('ipswlista.txt', 'r') as f:
     for line in f:
@@ -48,11 +49,11 @@ with open('ipswlista.txt', 'r') as f:
             otherList.append(line)
 
 
-ipadList.sort(reverse=False)
-ipodList.sort(reverse=False)
-appletvList.sort(reverse=False)
-iphoneList.sort(reverse=False)
-otherList.sort(reverse=False)
+ipadList.sort(key=lambda s: s.split("___")[-2])
+ipodList.sort(key=lambda s: s.split('___')[-2])
+appletvList.sort(key=lambda s: s.split('___')[-2])
+iphoneList.sort(key=lambda s: s.split('___')[-2])
+otherList.sort(key=lambda s: s.split('___')[-2])
 
 
 with open('newFile.txt', mode='wt', encoding='utf-8') as myfile:
